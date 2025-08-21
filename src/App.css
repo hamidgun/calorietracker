@@ -1,0 +1,61 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    width: 100%;
+}
+
+p {
+    padding: 0px;
+    margin: 0px;
+    color: #fff;
+}
+
+#header {
+    background-color: #58A0C8;
+    height: 30vh;
+
+}
+
+
+.value {
+  margin-bottom: 4px;
+font-size: 1.5rem;
+}
+
+.label {
+  margin: 0;
+  font-size: .8rem;
+}
+
+/* Daire (Ring) */
+.circle-ring {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  border: 6px solid #fff; /* Bootstrap primary */
+  padding: 5rem;
+}
+
+.circle-ring small {
+    width: 5rem;
+}
+
+
+
