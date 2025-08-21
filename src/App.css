@@ -24,13 +24,12 @@ img {
 p {
     padding: 0px;
     margin: 0px;
-    color: #fff;
 }
 
 #header {
     background-color: #58A0C8;
-    height: 30vh;
-
+    height: 35vh;
+    position: relative;
 }
 
 
@@ -57,5 +56,15 @@ font-size: 1.5rem;
     width: 5rem;
 }
 
+.macro-bars-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 440px;
+}
 
-
+.macro-bars {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
