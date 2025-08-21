@@ -35,36 +35,46 @@ p {
 
 .value {
   margin-bottom: 4px;
-font-size: 1.5rem;
+font-size: 2rem;
 }
 
 .label {
   margin: 0;
-  font-size: .8rem;
+  font-size: 1rem;
 }
 
 /* Daire (Ring) */
 .circle-ring {
-  width: 15rem;
-  height: 15rem;
+  width: 18rem;
+  height: 18rem;
   border-radius: 50%;
   border: 6px solid #fff; /* Bootstrap primary */
   padding: 5rem;
 }
 
 .circle-ring small {
-    width: 5rem;
+    width: 6rem;
 }
 
 .macro-bars-container {
     position: absolute;
-    bottom: 10px;
+    bottom: -22px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
+    width: 80%;
     max-width: 440px;
 }
 
 .macro-bars {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.date {
+    position: absolute;
+    bottom: 540px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 440px;
+    padding: .3rem;
 }
