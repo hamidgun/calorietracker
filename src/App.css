@@ -9,6 +9,10 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    background-color: aliceblue;
+}
+
 a {
     text-decoration: none;
 }
@@ -35,7 +39,7 @@ p {
 
 .value {
   margin-bottom: 4px;
-font-size: 2rem;
+  font-size: 2rem;
 }
 
 .label {
@@ -58,7 +62,7 @@ font-size: 2rem;
 
 .macro-bars-container {
     position: absolute;
-    bottom: -22px;
+    bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
@@ -69,12 +73,54 @@ font-size: 2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.date {
-    position: absolute;
-    bottom: 540px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 440px;
-    padding: .3rem;
+@media (max-width: 375px) {
+    .value {
+        font-size: 1.5rem;
+    }
+    .label {
+        font-size: 0.8rem;
+    }
+    .circle-ring {
+        width: 14rem;
+        height: 14rem;
+        padding: 4rem;  
+    }
+
+    .macro-bars {
+        height: 57px;
+    }
+    .progress{
+        height: 0.6rem;
+    }
+}
+
+#meals {
+    width: 95%;
+    margin: auto;
+}
+
+#meals img {
+    max-width: 60px;
+    max-height: 60px;
+    overflow: hidden;
+}
+
+#meals hr {
+    margin: .5rem 0 !important;
+}
+
+#meals button {
+    background: none;
+    border: none;
+    padding: 0;
+    top: 0;
+    left: 10rem;
+    width: 4rem;
+}
+
+#meals i {
+    font-size: 2.3rem;
+    color: #58A0C8;
+    cursor: pointer;
+   
 }
