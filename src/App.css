@@ -1,3 +1,5 @@
+/* utils */
+
 * {
     margin: 0px;
     padding: 0px;
@@ -30,6 +32,8 @@ p {
     margin: 0px;
 }
 
+/* header */
+
 #header {
     background-color: #58A0C8;
     height: 35vh;
@@ -59,6 +63,8 @@ p {
 .circle-ring small {
     width: 6rem;
 }
+
+/* macro bars */
 
 .macro-bars-container {
     position: absolute;
@@ -94,6 +100,8 @@ p {
     }
 }
 
+/* meals */
+
 #meals {
     width: 95%;
     margin: auto;
@@ -125,6 +133,8 @@ p {
    
 }
 
+/* footer */
+
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -141,6 +151,10 @@ p {
 
 .nav-label {
   font-size: 0.75rem;
+}
+
+.nav-label-create {
+  font-size: 1rem;
 }
 
 footer {

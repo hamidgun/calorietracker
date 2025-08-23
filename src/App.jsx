@@ -3,6 +3,8 @@ import "./App.css";
 function App() {
   return (
     <>
+      {/* header */}
+
       <div id="header">
         <div className="d-flex justify-content-between align-items-center shadow rounded position-relative h-100">
           <div className="container mt-3">
@@ -72,6 +74,8 @@ function App() {
           </div>
         </div>
       </div>
+
+      {/* date */}
       <div className="date rounded mt-5 p-2">
         <div className="container">
           <div className="row">
@@ -89,6 +93,8 @@ function App() {
           </div>
         </div>
       </div>
+
+      {/* meals */}
       <div id="meals">
         <div className="card meal shadow rounded border-0 p-3 mt-2 mb-4">
           <div className="row d-flex ">
@@ -179,28 +185,36 @@ function App() {
           </div>
         </div>
       </div>
+
+      {/* footer */}
       <footer>
         <nav className="bottom-nav">
           <div className="row justify-content-center align-items-center">
-            <div className="col-3 p-3">
+            <div className="col-2 p-3">
               <a href="#" className="nav-link text-white text-center">
                 <i className="bi bi-journal-text"></i>
                 <div className="nav-label">Diary</div>
               </a>
             </div>
-            <div className="col-3 p-3">
+            <div className="col-2 p-3">
               <a href="#" className="nav-link text-white text-center">
                 <i className="bi bi-star"></i>
                 <div className="nav-label">Favorites</div>
               </a>
             </div>
             <div className="col-3 p-3">
-              <a href="#" className="nav-link text-white text-center">
+              <a href="#" className="nav-link text-white text-center fs-2">
                 <i className="bi bi-plus-circle-fill"></i>
-                <div className="nav-label">Create</div>
+                <div className="nav-label-create">Create</div>
               </a>
             </div>
-            <div className="col-3 p-3">
+            <div className="col-2 p-3">
+              <a href="#" className="nav-link text-white text-center">
+                <i className="bi bi-search"></i>
+                <div className="nav-label">Search</div>
+              </a>
+            </div>
+            <div className="col-2 p-3">
               <a href="#" className="nav-link text-white text-center">
                 <i className="bi bi-person"></i>
                 <div className="nav-label">Profile</div>
