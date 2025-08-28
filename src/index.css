@@ -1,3 +1,7 @@
+:root {
+    --bs-primary: #58A0C8;
+}
+
 /* utils */
 
 * {
@@ -16,11 +20,11 @@ body {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 ul {
-    list-style: none;
+    list-style: none    !important;
 }
 
 img {
@@ -145,12 +149,18 @@ p {
   z-index: 1000;
 }
 
+.bottom-nav div {
+  height: 5.8rem;
+
+}
+
 .bottom-nav .nav-link {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  height: 100%;
 }
 
 .nav-label {
-  font-size: 0.75rem;
+  font-size: .9rem;
 }
 
 .nav-label-create {
@@ -159,4 +169,12 @@ p {
 
 footer {
     margin-top: 10rem;
+}
+
+.active-link {
+    background-color: white;
+    color: #58A0C8 !important;
+    font-weight: 600;
+    border-radius: .3rem;
+    /* padding: .4rem; */
 }
