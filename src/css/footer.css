@@ -5,19 +5,11 @@
   position: absolute;
   bottom: 100%;
   z-index: 1100;
-  min-width: 50rem;
+  width: 100vh;
   /* Smooth open animation on mount */
   animation: dropdown-in 160ms ease-out both;
-  transform-origin: bottom left;
- }
-
- @media (max-width: 576px) {
-  .dropdown-list {
-    min-width: 20rem;
-  }
+  transform-origin: bottom center;
 }
-
-
 
 .dropdown-item {
   padding: 8px 12px;
@@ -28,6 +20,7 @@
 
 .dropdown-item a{
     color: #58A0C8 !important;
+    font-size: 1.3rem;
 }
 
 .dropdown-item:hover {

@@ -1,7 +1,7 @@
-import { NavLink } from "react-router-dom";
 import "../index.css";
 import "../css/favoritePage.css";
 import Footer from "../components/Footer";
+import FoodCard from "../components/Foodcard";
 import { useState } from "react";
 
 function FavoritesPage() {
@@ -85,18 +85,16 @@ function FavoritesPage() {
         )}
 
         {activeTab.favoritesTab === "foods" && (
-          <div>
-            <div className="card shadow rounded border-0 p-3 mt-4 mb-4 position-relative">
-              <h5 className="card-title">Food Name</h5>
-              <p className="card-text">100 kcal </p>
-              <p className="card-text text-muted pt-1">
-                service or grammage info
-              </p>
-              <span className="position-absolute top-0 end-0 m-3 text-danger fs-5">
-                <i className="bi bi-heart-fill"></i>
-              </span>
-            </div>
-          </div>
+          <>
+            <FoodCard
+              food={{ name: "Food Name", calories: "300 kcal" }}
+              isSelected={true}
+            />
+            <FoodCard
+              food={{ name: "Food Name", calories: "300 kcal" }}
+              isSelected={true}
+            />
+          </>
         )}
       </div>
       <Footer />
