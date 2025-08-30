@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const CreateFoodForm = () => {
+const CreateFoodForm = ({ onSaveFoods, foods }) => {
   const [formData, setFormData] = useState({
     name: "",
     calories: "",
@@ -24,6 +24,35 @@ const CreateFoodForm = () => {
     e.preventDefault();
     // Handle form submission logic here
     console.log(formData, "Form submitted");
+
+    const duplicate = foods.some(
+      (food) =>
+        food.name.toLowerCase().trim() === formData.name.toLowerCase().trim()
+    );
+
+    if (duplicate) {
+      alert("Food with this name already exists!");
+      return;
+    }
+
+    const newFood = { ...formData, id: Date.now().toString() };
+
+    onSaveFoods(newFood);
+    // Reset form after submission
+    setFormData({
+      name: "",
+      calories: "",
+      carbs: "",
+      protein: "",
+      fat: "",
+      unsaturatedFat: "",
+      saturatedFat: "",
+      fiber: "",
+      sugar: "",
+      sodium: "",
+      cholesterol: "",
+      potassium: "",
+    });
   };
 
   return (

@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import FoodCard from "../components/Foodcard";
 import { useState } from "react";
 
-function FavoritesPage() {
+function FavoritesPage({ foods }) {
   const [activeTab, setActiveTab] = useState({
     favoritesTab: "meals",
     sortingTab: "new",
@@ -85,16 +85,17 @@ function FavoritesPage() {
         )}
 
         {activeTab.favoritesTab === "foods" && (
-          <>
-            <FoodCard
-              food={{ name: "Food Name", calories: "300 kcal" }}
-              isSelected={true}
-            />
-            <FoodCard
-              food={{ name: "Food Name", calories: "300 kcal" }}
-              isSelected={true}
-            />
-          </>
+          <div className="mt-4">
+            {foods.length === 0 ? (
+              <p className="text-muted text-center">No favorite foods yet.</p>
+            ) : (
+              <>
+                {foods.map((food) => (
+                  <FoodCard key={food.id} food={food} />
+                ))}
+              </>
+            )}
+          </div>
         )}
       </div>
       <Footer />
