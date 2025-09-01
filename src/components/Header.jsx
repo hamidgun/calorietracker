@@ -29,7 +29,9 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <MacrosBar />
+      <div className="macro-bars-container">
+        <MacrosBar />
+      </div>
     </div>
   );
 };

@@ -41,11 +41,11 @@ const Footer = () => {
                 ? "nav-link active-link text-center col-2 p-3"
                 : "nav-link text-white text-center col-2 p-3"
             }
-            to="/favorites"
+            to="/saved"
             end
           >
             <i className="bi bi-star"></i>
-            <div className="nav-label">Favorites</div>
+            <div className="nav-label">Saved</div>
           </NavLink>
 
           <div

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DiaryPage from "./pages/DiaryPage.jsx";
-import FavoritesPage from "./pages/FavoritesPage.jsx";
+import SavedPage from "./pages/SavedPage.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
 import CreatePage from "./pages/CreatePage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
+import FoodDetailsPage from "./pages/FoodDetailsPage.jsx";
 
 function App() {
   const [foods, setFoods] = useState(() => {
@@ -24,13 +25,14 @@ function App() {
       element: <MainLayout />,
       children: [
         { index: true, element: <DiaryPage /> },
-        { path: "favorites", element: <FavoritesPage foods={foods} /> },
+        { path: "saved", element: <SavedPage foods={foods} /> },
         {
           path: "create",
           element: <CreatePage foods={foods} setFoods={setFoods} />,
         },
         { path: "search", element: <SearchPage /> },
         { path: "profile", element: <ProfilePage /> },
+        { path: "food/:id", element: <FoodDetailsPage foods={foods} /> },
       ],
     },
   ]);

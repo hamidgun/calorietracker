@@ -33,6 +33,8 @@ const CreateFoodForm = ({ onSaveFoods, foods }) => {
     if (duplicate) {
       alert("Food with this name already exists!");
       return;
+    } else {
+      alert("Your food is successfully submitted!");
     }
 
     const newFood = { ...formData, id: Date.now().toString() };
