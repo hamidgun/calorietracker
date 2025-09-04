@@ -3,11 +3,14 @@ import "../css/savedPage.css";
 import Footer from "../components/Footer";
 import FoodCard from "../components/Foodcard";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 function SavedPage({ foods }) {
+  const [searchParams] = useSearchParams();
+  const initialTab = searchParams.get("savedTab") || "meals";
+
   const [activeTab, setActiveTab] = useState({
-    savedTab: "meals",
+    savedTab: initialTab,
     sortingTab: "new",
   });
 
@@ -99,8 +102,8 @@ function SavedPage({ foods }) {
               <p className="text-muted text-center">No favorite foods yet.</p>
             ) : (
               getSortedFoods().map((food) => (
-                <Link to={`/food/${food.id}`}>
-                  <FoodCard key={food.id} food={food} />
+                <Link key={food.id} to={`/food/${food.id}`}>
+                  <FoodCard food={food} />
                 </Link>
               ))
             )}

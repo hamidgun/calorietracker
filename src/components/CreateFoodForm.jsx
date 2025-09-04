@@ -250,7 +250,7 @@ const CreateFoodForm = ({ onSaveFoods, foods }) => {
       </div>
 
       <div className="mt-4 d-flex justify-content-end">
-        <button type="submit" className="btn btn-main">
+        <button type="submit" className="fs-5 btn btn-main">
           Save Food
         </button>
       </div>
