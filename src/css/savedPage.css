@@ -12,16 +12,3 @@
 .favorite-tab {
     height: 3.2rem;
 }
-
-
-.btn-main {
-    background-color: #58A0C8;
-    color: white;
-    border: none;
-}
-
-.btn-outline-main {
-    background-color: white;
-    color: #58A0C8;
-    border: none;
-} 

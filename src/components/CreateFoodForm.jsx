@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const CreateFoodForm = ({ onSaveFoods, foods }) => {
-  const [formData, setFormData] = useState({
+  const [foodFormData, setFoodFormData] = useState({
     name: "",
     calories: "",
     carbs: "",
@@ -17,17 +17,18 @@ const CreateFoodForm = ({ onSaveFoods, foods }) => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFoodFormData({ ...foodFormData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log(formData, "Form submitted");
+    console.log(foodFormData, "Form submitted");
 
     const duplicate = foods.some(
       (food) =>
-        food.name.toLowerCase().trim() === formData.name.toLowerCase().trim()
+        food.name.toLowerCase().trim() ===
+        foodFormData.name.toLowerCase().trim()
     );
 
     if (duplicate) {
@@ -37,11 +38,11 @@ const CreateFoodForm = ({ onSaveFoods, foods }) => {
       alert("Your food is successfully submitted!");
     }
 
-    const newFood = { ...formData, id: Date.now().toString() };
+    const newFood = { ...foodFormData, id: Date.now().toString() };
 
     onSaveFoods(newFood);
     // Reset form after submission
-    setFormData({
+    setFoodFormData({
       name: "",
       calories: "",
       carbs: "",
@@ -62,32 +63,32 @@ const CreateFoodForm = ({ onSaveFoods, foods }) => {
       <h2 className="mb-4 text-center">Create New Food</h2>
 
       <div className="mb-3">
-        <label htmlFor="name" className="form-label">
+        <label htmlFor="food-name" className="form-label">
           Food Name
         </label>
         <input
           type="text"
           className="form-control"
-          id="name"
+          id="food-name"
           name="name"
           placeholder="Required"
-          value={formData.name}
+          value={foodFormData.name}
           onChange={handleChange}
           required
         />
       </div>
 
       <div className="mb-3">
-        <label htmlFor="calories" className="form-label">
+        <label htmlFor="food-calories" className="form-label">
           Calories per 100 gram
         </label>
         <input
           type="number"
           className="form-control"
-          id="calories"
+          id="food-calories"
           name="calories"
           placeholder="Required"
-          value={formData.calories}
+          value={foodFormData.calories}
           onChange={handleChange}
           required
           step="any"
@@ -96,48 +97,48 @@ const CreateFoodForm = ({ onSaveFoods, foods }) => {
 
       <div className="row g-3">
         <div className="col-md-4">
-          <label htmlFor="carbs" className="form-label">
+          <label htmlFor="food-carbs" className="form-label">
             Carbs (g)
           </label>
           <input
             type="number"
             className="form-control"
-            id="carbs"
+            id="food-carbs"
             name="carbs"
             placeholder="Required"
-            value={formData.carbs}
+            value={foodFormData.carbs}
             onChange={handleChange}
             required
             step="any"
           />
         </div>
         <div className="col-md-4">
-          <label htmlFor="protein" className="form-label">
+          <label htmlFor="food-protein" className="form-label">
             Protein (g)
           </label>
           <input
             type="number"
             className="form-control"
-            id="protein"
+            id="food-protein"
             name="protein"
             placeholder="Required"
-            value={formData.protein}
+            value={foodFormData.protein}
             onChange={handleChange}
             required
             step="any"
           />
         </div>
         <div className="col-md-4">
-          <label htmlFor="fat" className="form-label">
+          <label htmlFor="food-fat" className="form-label">
             Fat (g)
           </label>
           <input
             type="number"
             className="form-control"
-            id="fat"
+            id="food-fat"
             name="fat"
             placeholder="Required"
-            value={formData.fat}
+            value={foodFormData.fat}
             onChange={handleChange}
             required
             step="any"
@@ -150,99 +151,99 @@ const CreateFoodForm = ({ onSaveFoods, foods }) => {
 
       <div className="row g-3">
         <div className="col-md-4">
-          <label htmlFor="unsaturatedFat" className="form-label">
+          <label htmlFor="food-unsaturatedFat" className="form-label">
             Unsaturated Fat (g)
           </label>
           <input
             type="number"
             className="form-control"
-            id="unsaturatedFat"
+            id="food-unsaturatedFat"
             name="unsaturatedFat"
-            value={formData.unsaturatedFat}
+            value={foodFormData.unsaturatedFat}
             onChange={handleChange}
             step="any"
           />
         </div>
         <div className="col-md-4">
-          <label htmlFor="saturatedFat" className="form-label">
+          <label htmlFor="food-saturatedFat" className="form-label">
             Saturated Fat (g)
           </label>
           <input
             type="number"
             className="form-control"
-            id="saturatedFat"
+            id="food-saturatedFat"
             name="saturatedFat"
-            value={formData.saturatedFat}
+            value={foodFormData.saturatedFat}
             onChange={handleChange}
             step="any"
           />
         </div>
         <div className="col-md-4">
-          <label htmlFor="fiber" className="form-label">
+          <label htmlFor="food-fiber" className="form-label">
             Fiber (g)
           </label>
           <input
             type="number"
             className="form-control"
-            id="fiber"
+            id="food-fiber"
             name="fiber"
-            value={formData.fiber}
+            value={foodFormData.fiber}
             onChange={handleChange}
             step="any"
           />
         </div>
         <div className="col-md-4">
-          <label htmlFor="sugar" className="form-label">
+          <label htmlFor="food-sugar" className="form-label">
             Sugar (g)
           </label>
           <input
             type="number"
             className="form-control"
-            id="sugar"
+            id="food-sugar"
             name="sugar"
-            value={formData.sugar}
+            value={foodFormData.sugar}
             onChange={handleChange}
             step="any"
           />
         </div>
         <div className="col-md-4">
-          <label htmlFor="sodium" className="form-label">
+          <label htmlFor="food-sodium" className="form-label">
             Sodium (mg)
           </label>
           <input
             type="number"
             className="form-control"
-            id="sodium"
+            id="food-sodium"
             name="sodium"
-            value={formData.sodium}
+            value={foodFormData.sodium}
             onChange={handleChange}
             step="any"
           />
         </div>
         <div className="col-md-4">
-          <label htmlFor="cholesterol" className="form-label">
+          <label htmlFor="food-cholesterol" className="form-label">
             Cholesterol (mg)
           </label>
           <input
             type="number"
             className="form-control"
-            id="cholesterol"
+            id="food-cholesterol"
             name="cholesterol"
-            value={formData.cholesterol}
+            value={foodFormData.cholesterol}
             onChange={handleChange}
             step="any"
           />
         </div>
         <div className="col-md-4">
-          <label htmlFor="potassium" className="form-label">
+          <label htmlFor="food-potassium" className="form-label">
             Potassium (mg)
           </label>
           <input
             type="number"
             className="form-control"
-            id="potassium"
+            id="food-potassium"
             name="potassium"
-            value={formData.potassium}
+            value={foodFormData.potassium}
             onChange={handleChange}
             step="any"
           />

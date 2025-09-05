@@ -33,6 +33,24 @@ p {
     margin: 0px;
 }
 
+.btn-main {
+    background-color: #58A0C8;
+    color: white;
+    border: none;
+}
+
+.btn-outline-main {
+    background-color: #fff;
+    color: #58A0C8;
+    border: none;
+}
+
+.btn-main:hover {
+    background-color: #fff;
+    color: #58A0C8;
+    border: 1px solid #58A0C8;
+}
+
 /* header */
 
 #header {

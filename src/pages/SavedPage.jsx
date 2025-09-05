@@ -5,7 +5,7 @@ import FoodCard from "../components/Foodcard";
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
-function SavedPage({ foods }) {
+function SavedPage({ foods, meals }) {
   const [searchParams] = useSearchParams();
   const initialTab = searchParams.get("savedTab") || "meals";
 
@@ -28,6 +28,16 @@ function SavedPage({ foods }) {
       );
     } else {
       return [...foods].sort((a, b) => b.id - a.id);
+    }
+  };
+
+  const getSortedMeals = () => {
+    if (activeTab.sortingTab === "A-Z") {
+      return [...meals].sort((a, b) =>
+        a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+      );
+    } else {
+      return [...meals].sort((a, b) => b.id - a.id);
     }
   };
 
@@ -82,17 +92,16 @@ function SavedPage({ foods }) {
 
         {/* İçerik Alanı */}
         {activeTab.savedTab === "meals" && (
-          <div>
-            <div className="card shadow rounded border-0 p-3 mt-4 mb-4 position-relative">
-              <h5 className="card-title">Meal Name</h5>
-              <p className="card-text">200 kcal </p>
-              <p className="card-text text-muted pt-1">
-                service or grammage info
-              </p>
-              <span className="position-absolute top-0 end-0 m-3 text-danger fs-5">
-                <i className="bi bi-heart-fill"></i>
-              </span>
-            </div>
+          <div className="mt-4">
+            {meals.length === 0 ? (
+              <p className="text-muted text-center">No meals yet.</p>
+            ) : (
+              getSortedMeals().map((meal) => (
+                <Link key={meal.id} to={`/food/${meal.id}`}>
+                  <MealCard meal={meal} />
+                </Link>
+              ))
+            )}
           </div>
         )}
 

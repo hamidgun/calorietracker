@@ -53,13 +53,16 @@ const Footer = () => {
             className="position-relative d-flex flex-column align-items-center col-2 p-3 text-center"
           >
             <button
-              className="btn-main"
+              type="button"
+              className={`footer-fab ${isOpen ? "is-open" : ""}`}
               onClick={() => setIsOpen((prev) => !prev)}
               aria-haspopup="menu"
               aria-expanded={isOpen}
               aria-controls="create-menu"
+              aria-label="Create"
+              title="Create"
             >
-              <i className="bi bi-plus-circle-fill fs-1"></i>
+              <i className="bi bi-plus"></i>
             </button>
 
             {isOpen && (
