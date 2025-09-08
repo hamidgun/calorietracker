@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
-import "../css/foodDetailsPage.css";
+import "../css/foodMealDetails.css";
 import { useState } from "react";
 import FoodDetailsForm from "../components/FoodDetailsForm";
 
@@ -21,9 +21,6 @@ const FoodDetailsPage = ({ foods }) => {
               className="bi bi-arrow-left"
               onClick={() => navigate("/saved?savedTab=foods")}
             ></i>
-          </div>
-          <div className="col-1">
-            <i className="bi bi-heart"></i>
           </div>
         </div>
         <FoodDetailsForm food={food} amount={amount} setAmount={setAmount} />

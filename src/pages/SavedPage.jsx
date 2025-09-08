@@ -2,6 +2,7 @@ import "../index.css";
 import "../css/savedPage.css";
 import Footer from "../components/Footer";
 import FoodCard from "../components/Foodcard";
+import MealCard from "../components/MealCard";
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
@@ -22,6 +23,7 @@ function SavedPage({ foods, meals }) {
   };
 
   const getSortedFoods = () => {
+    if (!foods || foods.length === 0) return [];
     if (activeTab.sortingTab === "A-Z") {
       return [...foods].sort((a, b) =>
         a.name.toLowerCase().localeCompare(b.name.toLowerCase())
@@ -32,6 +34,7 @@ function SavedPage({ foods, meals }) {
   };
 
   const getSortedMeals = () => {
+    if (!meals || meals.length === 0) return [];
     if (activeTab.sortingTab === "A-Z") {
       return [...meals].sort((a, b) =>
         a.name.toLowerCase().localeCompare(b.name.toLowerCase())
@@ -97,7 +100,7 @@ function SavedPage({ foods, meals }) {
               <p className="text-muted text-center">No meals yet.</p>
             ) : (
               getSortedMeals().map((meal) => (
-                <Link key={meal.id} to={`/food/${meal.id}`}>
+                <Link key={meal.id} to={`/meal/${meal.id}`}>
                   <MealCard meal={meal} />
                 </Link>
               ))

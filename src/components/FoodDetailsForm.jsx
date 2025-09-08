@@ -12,7 +12,7 @@ const FoodDetailsForm = ({ food, amount, setAmount }) => {
             <input
               type="number"
               className="form-control amount-box"
-              id="amount"
+              id="food-amount"
               name="amount"
               value={amount}
               onChange={(e) => setAmount(Number(e.target.value))}

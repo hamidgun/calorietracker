@@ -59,3 +59,37 @@ input.form-control:focus {
   max-height: 400px;
   overflow-y: auto;
 }
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1050;
+}
+
+.modal-dialog {
+  margin: 1.75rem auto;
+}
+
+.modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  border-bottom: 1px solid #eee;
+}
+
+.modal-footer {
+  border-top: 1px solid #eee;
+}
+
+.modal input[type="number"] {
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}

@@ -9,21 +9,59 @@ import SearchPage from "./pages/SearchPage.jsx";
 import FoodDetailsPage from "./pages/FoodDetailsPage.jsx";
 import MealDetailsPage from "./pages/MealDetailsPage.jsx";
 
+// Storage keys as constants
+const STORAGE_KEYS = {
+  FOODS: "foods",
+  MEALS: "meals",
+};
+
+// Helper function for safe storage operations
+const loadFromStorage = (key, defaultValue = []) => {
+  try {
+    const stored = localStorage.getItem(key);
+    return stored ? JSON.parse(stored) : defaultValue;
+  } catch (error) {
+    console.error(`Error loading ${key}:`, error);
+    return defaultValue;
+  }
+};
+
+const saveToStorage = (key, value) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    console.error(`Error saving ${key}:`, error);
+  }
+};
+
 function App() {
-  const [foods, setFoods] = useState(() => {
-    const storedFoods = localStorage.getItem("foods");
-    return storedFoods ? JSON.parse(storedFoods) : [];
-  });
+  const [isLoading, setIsLoading] = useState(true);
+  const [foods, setFoods] = useState(() => loadFromStorage(STORAGE_KEYS.FOODS));
+  const [meals, setMeals] = useState(() => loadFromStorage(STORAGE_KEYS.MEALS));
 
   useEffect(() => {
-    const FOODS_KEY = "foods";
-    localStorage.setItem(FOODS_KEY, JSON.stringify(foods));
+    saveToStorage(STORAGE_KEYS.FOODS, foods);
   }, [foods]);
 
-  const [meals, setMeals] = useState(() => {
-    const storedMeals = localStorage.getItem("meals");
-    return storedMeals ? JSON.parse(storedMeals) : [];
-  });
+  useEffect(() => {
+    saveToStorage(STORAGE_KEYS.MEALS, meals);
+  }, [meals]);
+
+  useEffect(() => {
+    // Veri yükleme işlemi tamamlandığında
+    const dataLoaded = foods !== null && meals !== null;
+    setIsLoading(false);
+  }, [foods, meals]);
+
+  if (isLoading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
   const routes = createBrowserRouter([
     {
