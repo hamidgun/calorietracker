@@ -9,12 +9,13 @@ const MealDetails = ({ meal, amount, setAmount }) => {
   }, []);
 
   const calc = (value) => {
-    if (!value) return "0";
+    if (!value) return "1";
     return (value * amount).toFixed(1); // Simply multiply by number of servings
   };
 
   return (
     <form action="">
+      {/* meal information */}
       <div className="p-4 rounded shadow-sm mb-5">
         <h3 className="mb-4">{meal.name}</h3>
         <div className="row mb-4">
@@ -64,10 +65,12 @@ const MealDetails = ({ meal, amount, setAmount }) => {
           </div>
         </div>
       </div>
+      {/* foods in meal */}
       <div className="meal-content mb-4">
         <h4 className="mt-4 mb-3">Foods in this Meal</h4>
         {meal.foods && meal.foods.length > 0 ? (
           <div className="list-group">
+            {/* List of foods */}
             {meal.foods.map((food) => (
               <div
                 key={food.id}
@@ -75,7 +78,7 @@ const MealDetails = ({ meal, amount, setAmount }) => {
               >
                 <div>
                   <h6 className="mb-1">{food.name}</h6>
-                  <small className="text-muted">1 serving</small>
+                  <small className="text-muted">{food.amount} gram</small>
                 </div>
                 <div className="text-end">
                   <div>{food.nutrition.calories} kcal</div>
@@ -91,6 +94,7 @@ const MealDetails = ({ meal, amount, setAmount }) => {
           <p className="text-muted">No foods in this meal.</p>
         )}
       </div>
+      {/* nutritional information */}
       <div className="nutri-info shadow-sm">
         <div className="card border-0">
           <div className="card-header fs-3 ">Nutritional Information</div>

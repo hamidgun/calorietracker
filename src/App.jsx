@@ -69,7 +69,12 @@ function App() {
       element: <MainLayout />,
       children: [
         { index: true, element: <DiaryPage /> },
-        { path: "saved", element: <SavedPage foods={foods} meals={meals} /> },
+        {
+          path: "saved",
+          element: (
+            <SavedPage foods={foods} meals={meals} setMeals={setMeals} />
+          ),
+        },
         {
           path: "create",
           element: (

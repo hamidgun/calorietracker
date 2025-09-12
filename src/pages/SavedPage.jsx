@@ -6,7 +6,7 @@ import MealCard from "../components/MealCard";
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
-function SavedPage({ foods, meals }) {
+function SavedPage({ foods, meals, setMeals }) {
   const [searchParams] = useSearchParams();
   const initialTab = searchParams.get("savedTab") || "meals";
 
@@ -41,6 +41,13 @@ function SavedPage({ foods, meals }) {
       );
     } else {
       return [...meals].sort((a, b) => b.id - a.id);
+    }
+  };
+
+  const handleDeleteMeal = (mealId) => {
+    // Confirm before deleting
+    if (window.confirm("Are you sure you want to delete this meal?")) {
+      setMeals((prevMeals) => prevMeals.filter((meal) => meal.id !== mealId));
     }
   };
 
@@ -99,11 +106,30 @@ function SavedPage({ foods, meals }) {
             {meals.length === 0 ? (
               <p className="text-muted text-center">No meals yet.</p>
             ) : (
-              getSortedMeals().map((meal) => (
-                <Link key={meal.id} to={`/meal/${meal.id}`}>
-                  <MealCard meal={meal} />
-                </Link>
-              ))
+              getSortedMeals().map((meal) => {
+                return (
+                  <div
+                    key={meal.id}
+                    className="meal-card-container"
+                    onClick={(e) => {
+                      // Only navigate if not clicking on the delete button
+                      if (
+                        !e.target.classList.contains("bi-x") &&
+                        !e.target.closest(".bi-x")
+                      ) {
+                        window.location.href = `/meal/${meal.id}`;
+                      }
+                    }}
+                  >
+                    <MealCard
+                      meal={meal}
+                      onDelete={(id) => {
+                        handleDeleteMeal(id);
+                      }}
+                    />
+                  </div>
+                );
+              })
             )}
           </div>
         )}

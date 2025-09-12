@@ -60,6 +60,10 @@ input.form-control:focus {
   overflow-y: auto;
 }
 
+.add-food-to-meal .add-food-section .food-already-selected {
+  color: #888;
+}
+
 /* Modal styles */
 .modal {
   position: fixed;

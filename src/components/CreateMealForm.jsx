@@ -171,7 +171,7 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
       <div className="p-4 rounded shadow-sm">
         <h2 className="mb-4 fs-4">Meal Content</h2>
 
-        {/* Seçili Food'ların Listesi */}
+        {/* List of Selected Foods */}
         {mealFormData.foods.length > 0 && (
           <div className="selected-foods mb-4">
             <h3 className="fs-5 mb-3">Selected Foods:</h3>
@@ -194,7 +194,7 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
               </div>
             ))}
 
-            <div className="nutrition-totals mt-3 p-3 bg-light rounded">
+            <div className="nutrition-totals mt-3 p-3 shadow-sm rounded">
               <h4 className="fs-5 mb-3">Meal Totals:</h4>
               <div className="row">
                 <div className="col-6">
@@ -217,7 +217,7 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
           </div>
         )}
 
-        {/* Food Ekleme Bölümü */}
+        {/* Food Adding Section */}
         <div
           className="fs-5 add-food-to-meal"
           style={{ cursor: "pointer" }}
@@ -226,18 +226,28 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
           <i className="bi bi-plus-circle pe-3"></i> Add Food to Meal
         </div>
         {showFoodList && foods && foods.length > 0 && (
-          <div className="add-food-section mt-3">
-            <div className="row g-3">
-              {foods.map((food) => (
-                <div
-                  key={food.id}
-                  className="col-md-6 col-lg-4"
-                  onClick={() => handleFoodSelect(food)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <FoodCard food={food} />
-                </div>
-              ))}
+          <div className="add-food-section mt-4">
+            <div className="row">
+              {foods.map((food) => {
+                const isSelected = mealFormData.foods.some(
+                  (item) => item.id === food.id
+                );
+                return (
+                  <div
+                    key={food.id}
+                    className={`col-12 ${
+                      isSelected ? "food-already-selected" : ""
+                    }`}
+                    onClick={() => !isSelected && handleFoodSelect(food)}
+                    style={{
+                      cursor: isSelected ? "not-allowed" : "pointer",
+                      opacity: isSelected ? 0.6 : 1,
+                    }}
+                  >
+                    <FoodCard food={food} deletable={false} />
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}

@@ -12,3 +12,13 @@
 .favorite-tab {
     height: 3.2rem;
 }
+
+.meal-card-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.meal-card-container .delete-icon {
+    position: relative;
+    z-index: 2;
+}
