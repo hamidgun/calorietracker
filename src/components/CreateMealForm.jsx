@@ -192,7 +192,12 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
           <div className="selected-foods mb-4">
             <h3 className="fs-5 mb-3">Selected Foods:</h3>
             {mealFormData.foods.map((food) => (
-              <FoodCard key={food.id} food={food} deletable={true} />
+              <FoodCard
+                key={food.id}
+                food={food}
+                amount={food.amount}
+                deletable={true}
+              />
             ))}
 
             <div className="nutrition-totals mt-3 p-3 shadow-sm rounded">
