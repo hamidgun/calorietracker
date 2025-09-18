@@ -1,0 +1,56 @@
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+
+hr {
+    opacity: .1;
+} 
+
+.form-control {
+  padding: 1rem !important;
+}
+
+.navigation i {
+  cursor: pointer;
+}
+
+.navigation div{
+    font-size: 2rem;
+    margin: .8rem 0;
+}
+
+.amount-box {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.serving-box, .meals-box {
+    font-size: 1.3rem;
+}
+
+select.form-control {
+  appearance: auto; 
+  -webkit-appearance: auto; 
+  -moz-appearance: auto; 
+}
+
+.nutri-info {
+    font-size: 1.2rem;
+}
+
+.nutri-info .card {
+    background-color: aliceblue;
+
+}
+
+.nutri-info .card-header {
+    border-bottom: none !important;
+}

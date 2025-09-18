@@ -1,0 +1,24 @@
+.favorite-title {
+    text-align: center;
+    color: #58A0C8;
+    height: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+
+.favorite-tab {
+    height: 3.2rem;
+}
+
+.meal-card-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.meal-card-container .delete-icon {
+    position: relative;
+    z-index: 2;
+}
