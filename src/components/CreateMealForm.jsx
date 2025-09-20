@@ -191,14 +191,26 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
         {mealFormData.foods.length > 0 && (
           <div className="selected-foods mb-4">
             <h3 className="fs-5 mb-3">Selected Foods:</h3>
-            {mealFormData.foods.map((food) => (
-              <FoodCard
-                key={food.id}
-                food={food}
-                amount={food.amount}
-                deletable={true}
-              />
-            ))}
+            <div className="list-group">
+              {mealFormData.foods.map((food) => (
+                <div
+                  key={food.id}
+                  className="list-group-item shadow-sm d-flex justify-content-between align-items-center mb-2"
+                >
+                  <div>
+                    <h6 className="mb-1">{food.name}</h6>
+                    <small className="text-muted">{food.amount} gram</small>
+                  </div>
+                  <div className="text-end">
+                    <div>{food.calories} kcal</div>
+                    <small className="text-muted">
+                      P: {food.protein}g | C: {food.carbs}g | F: {food.fat}g
+                    </small>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Meal Nutrition Totals */}
 
             <div className="nutrition-totals mt-3 p-3 shadow-sm rounded">
               <h4 className="fs-5 mb-3">Meal Totals:</h4>
