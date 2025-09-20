@@ -24,6 +24,8 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
 
   const [showFoodList, setShowFoodList] = useState(false);
   const [selectedFood, setSelectedFood] = useState(null);
+  const [editingFoodIndex, setEditingFoodIndex] = useState(null);
+
   const [showAmountInput, setShowAmountInput] = useState(false);
   const [amount, setAmount] = useState("100");
 
@@ -44,9 +46,65 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
     };
   };
 
+  const handleSelectedFoodClick = (food, index) => {
+    const originalFood = foods.find((f) => f.id === food.id);
+
+    setSelectedFood(originalFood);
+    setAmount(food.amount.toString());
+    setEditingFoodIndex(index);
+    setShowAmountInput(true);
+  };
+
   const handleFoodSelect = (food) => {
     setSelectedFood(food);
     setShowAmountInput(true);
+  };
+
+  const handleRemoveFood = (index) => {
+    setMealFormData((prev) => {
+      const updatedFoods = prev.foods.filter((_, i) => i !== index);
+      const newTotals = updatedFoods.reduce(
+        (totals, food) => {
+          totals.calories = (totals.calories || 0) + food.calories;
+          totals.protein = (totals.protein || 0) + food.protein;
+          totals.carbs = (totals.carbs || 0) + food.carbs;
+          totals.fat = (totals.fat || 0) + food.fat;
+          totals.fiber = (totals.fiber || 0) + food.fiber;
+          totals.sugar = (totals.sugar || 0) + food.sugar;
+          totals.sodium = (totals.sodium || 0) + food.sodium;
+          totals.cholesterol = (totals.cholesterol || 0) + food.cholesterol;
+          totals.potassium = (totals.potassium || 0) + food.potassium;
+          totals.unsaturatedFat =
+            (totals.unsaturatedFat || 0) + food.unsaturatedFat;
+          totals.saturatedFat = (totals.saturatedFat || 0) + food.saturatedFat;
+          return totals;
+        },
+        {
+          calories: 0,
+          protein: 0,
+          carbs: 0,
+          fat: 0,
+          fiber: 0,
+          sugar: 0,
+          sodium: 0,
+          cholesterol: 0,
+          potassium: 0,
+          unsaturatedFat: 0,
+          saturatedFat: 0,
+        }
+      );
+
+      return {
+        ...prev,
+        foods: updatedFoods,
+        nutritionTotals: newTotals,
+      };
+    });
+
+    setShowAmountInput(false);
+    setSelectedFood(null);
+    setAmount("100");
+    setEditingFoodIndex(null);
   };
 
   const handleAmountSubmit = () => {
@@ -58,7 +116,7 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
         id: selectedFood.id,
         name: selectedFood.name,
         amount: parsedAmount,
-        // Değerleri direkt olarak food objesinin içine koyuyoruz
+        // We put the values directly into the food object.
         calories: calculatedValues.calories,
         protein: calculatedValues.protein,
         carbs: calculatedValues.carbs,
@@ -73,23 +131,47 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
       };
 
       setMealFormData((prev) => {
-        const updatedFoods = [...prev.foods, newFood];
-        const newTotals = updatedFoods.reduce((totals, food) => {
-          // nutrition. olmadan direkt değerlere erişiyoruz
-          totals.calories = (totals.calories || 0) + food.calories;
-          totals.protein = (totals.protein || 0) + food.protein;
-          totals.carbs = (totals.carbs || 0) + food.carbs;
-          totals.fat = (totals.fat || 0) + food.fat;
-          totals.fiber = (totals.fiber || 0) + food.fiber;
-          totals.sugar = (totals.sugar || 0) + food.sugar;
-          totals.sodium = (totals.sodium || 0) + food.sodium;
-          totals.cholesterol = (totals.cholesterol || 0) + food.cholesterol;
-          totals.potassium = (totals.potassium || 0) + food.potassium;
-          totals.unsaturatedFat =
-            (totals.unsaturatedFat || 0) + food.unsaturatedFat;
-          totals.saturatedFat = (totals.saturatedFat || 0) + food.saturatedFat;
-          return totals;
-        }, {});
+        let updatedFoods;
+
+        if (editingFoodIndex !== null) {
+          updatedFoods = [...prev.foods];
+          updatedFoods[editingFoodIndex] = newFood;
+        } else {
+          updatedFoods = [...prev.foods, newFood];
+        }
+
+        const newTotals = updatedFoods.reduce(
+          (totals, food) => {
+            // We access the values directly without nutrition.
+            totals.calories = (totals.calories || 0) + food.calories;
+            totals.protein = (totals.protein || 0) + food.protein;
+            totals.carbs = (totals.carbs || 0) + food.carbs;
+            totals.fat = (totals.fat || 0) + food.fat;
+            totals.fiber = (totals.fiber || 0) + food.fiber;
+            totals.sugar = (totals.sugar || 0) + food.sugar;
+            totals.sodium = (totals.sodium || 0) + food.sodium;
+            totals.cholesterol = (totals.cholesterol || 0) + food.cholesterol;
+            totals.potassium = (totals.potassium || 0) + food.potassium;
+            totals.unsaturatedFat =
+              (totals.unsaturatedFat || 0) + food.unsaturatedFat;
+            totals.saturatedFat =
+              (totals.saturatedFat || 0) + food.saturatedFat;
+            return totals;
+          },
+          {
+            calories: 0,
+            protein: 0,
+            carbs: 0,
+            fat: 0,
+            fiber: 0,
+            sugar: 0,
+            sodium: 0,
+            cholesterol: 0,
+            potassium: 0,
+            unsaturatedFat: 0,
+            saturatedFat: 0,
+          }
+        );
 
         return {
           ...prev,
@@ -97,6 +179,8 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
           nutritionTotals: newTotals,
         };
       });
+
+      setEditingFoodIndex(null);
     }
   };
 
@@ -192,10 +276,12 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
           <div className="selected-foods mb-4">
             <h3 className="fs-5 mb-3">Selected Foods:</h3>
             <div className="list-group">
-              {mealFormData.foods.map((food) => (
+              {mealFormData.foods.map((food, index) => (
                 <div
                   key={food.id}
+                  onClick={() => handleSelectedFoodClick(food, index)}
                   className="list-group-item shadow-sm d-flex justify-content-between align-items-center mb-2"
+                  style={{ cursor: "pointer" }}
                 >
                   <div>
                     <h6 className="mb-1">{food.name}</h6>
@@ -284,7 +370,8 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">
-                  Enter Amount for {selectedFood.name}
+                  {editingFoodIndex !== null ? "Edit" : "Enter Amount for"}{" "}
+                  {selectedFood.name}
                 </h5>
                 <button
                   type="button"
@@ -293,6 +380,7 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
                     setShowAmountInput(false);
                     setSelectedFood(null);
                     setAmount("100");
+                    setEditingFoodIndex(null);
                   }}
                 ></button>
               </div>
@@ -318,10 +406,23 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
                     setShowAmountInput(false);
                     setSelectedFood(null);
                     setAmount("100");
+                    setEditingFoodIndex(null);
                   }}
                 >
                   Cancel
                 </button>
+
+                {editingFoodIndex !== null && (
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => {
+                      handleRemoveFood(editingFoodIndex);
+                    }}
+                  >
+                    Remove
+                  </button>
+                )}
                 <button
                   type="button"
                   className="btn btn-primary"
@@ -329,9 +430,11 @@ const CreateMealForm = ({ onSaveMeals, foods }) => {
                     handleAmountSubmit();
                     setShowAmountInput(false);
                     setSelectedFood(null);
+                    setAmount("100");
+                    setEditingFoodIndex(null);
                   }}
                 >
-                  Add
+                  {editingFoodIndex !== null ? "Update" : "Add"}
                 </button>
               </div>
             </div>
